@@ -16,6 +16,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 
+	grunt.loadTasks('./tasks');
+
 	grunt.registerTask('foo', function(p1, p2) {
 		console.log('foo is running...');
 		console.log('This task "%s" has arguments %j', this.name, this.args);
@@ -67,6 +69,9 @@ module.exports = function(grunt) {
 
 	// Project configuration
   	grunt.initConfig({
+        external: {
+            foo: 10
+        },
   		bar: {
   			foo: 42
   		},
@@ -178,7 +183,7 @@ module.exports = function(grunt) {
   	// Define the default task
 	grunt.registerTask('default', ['jshint:all', 'clean', 'concat', 'uglify', 'coffee', 'jade', 'stylus']);
 
-	grunt.registerTask('custom-tasks', 'Alias for my custom tasks', ['check', 'foo:a:b', 'bar', 'log-deploy', 'copy:target2', 'webget']);
+	grunt.registerTask('custom-tasks', 'Alias for my custom tasks', ['check', 'foo:a:b', 'bar', 'log-deploy', 'copy:target2', 'webget', 'external']);
 
 	grunt.registerTask('watching', ['watch']);
 };
